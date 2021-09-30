@@ -20,6 +20,14 @@ export class AppComponent implements OnInit {
 	bhutan?: Country;
 	sriLanka?: Country;
 	maldives?: Country;
+	totalCases: number = 0;
+	totalIndiaCases: number = 0;
+	totalNepalCases: number = 0;
+	totalBangladeshCases: number = 0;
+	totalPakistanCases: number = 0;
+	totalBhutanCases: number = 0;
+	totalSriLankaCases: number = 0;
+	totalMaldivesCases: number = 0;
 
 
 	constructor(private restManager: RestManager) {
@@ -45,6 +53,75 @@ export class AppComponent implements OnInit {
 			this.bhutan = data[4].data;
 			this.sriLanka = data[5].data;
 			this.maldives = data[6].data;
+			if(this.india?.confirmed) {
+				this.totalIndiaCases = this.totalIndiaCases + this.india?.confirmed;
+			}
+			if(this.india?.deaths) {
+				this.totalIndiaCases = this.totalIndiaCases + this.india?.deaths;
+			}
+			if(this.india?.recovered) {
+				this.totalIndiaCases = this.totalIndiaCases + this.india?.recovered;
+			}
+
+			if(this.nepal?.confirmed) {
+				this.totalNepalCases = this.totalNepalCases + this.nepal?.confirmed;
+			}
+			if(this.nepal?.deaths) {
+				this.totalNepalCases = this.totalNepalCases + this.nepal?.deaths;
+			}
+			if(this.nepal?.recovered) {
+				this.totalNepalCases = this.totalNepalCases + this.nepal?.recovered;
+			}
+
+			if(this.bangladesh?.confirmed) {
+				this.totalBangladeshCases = this.totalBangladeshCases + this.bangladesh?.confirmed;
+			}
+			if(this.bangladesh?.deaths) {
+				this.totalBangladeshCases = this.totalBangladeshCases + this.bangladesh?.deaths;
+			}
+			if(this.bangladesh?.recovered) {
+				this.totalBangladeshCases = this.totalBangladeshCases + this.bangladesh?.recovered;
+			}
+
+			if(this.pakistan?.confirmed) {
+				this.totalPakistanCases = this.totalPakistanCases + this.pakistan?.confirmed;
+			}
+			if(this.pakistan?.deaths) {
+				this.totalPakistanCases = this.totalPakistanCases + this.pakistan?.deaths;
+			}
+			if(this.pakistan?.recovered) {
+				this.totalPakistanCases = this.totalPakistanCases + this.pakistan?.recovered;
+			}
+
+			if(this.bhutan?.confirmed) {
+				this.totalBhutanCases = this.totalBhutanCases + this.bhutan?.confirmed;
+			}
+			if(this.bhutan?.deaths) {
+				this.totalBhutanCases = this.totalBhutanCases + this.bhutan?.deaths;
+			}
+			if(this.bhutan?.recovered) {
+				this.totalBhutanCases = this.totalBhutanCases + this.bhutan?.recovered;
+			}
+
+			if(this.sriLanka?.confirmed) {
+				this.totalSriLankaCases = this.totalSriLankaCases + this.sriLanka?.confirmed;
+			}
+			if(this.sriLanka?.deaths) {
+				this.totalSriLankaCases = this.totalSriLankaCases + this.sriLanka?.deaths;
+			}
+			if(this.sriLanka?.recovered) {
+				this.totalSriLankaCases = this.totalSriLankaCases + this.sriLanka?.recovered;
+			}
+
+			if(this.maldives?.confirmed) {
+				this.totalMaldivesCases = this.totalMaldivesCases + this.maldives?.confirmed;
+			}
+			if(this.maldives?.deaths) {
+				this.totalMaldivesCases = this.totalMaldivesCases + this.maldives?.deaths;
+			}
+			if(this.maldives?.recovered) {
+				this.totalMaldivesCases = this.totalMaldivesCases + this.maldives?.recovered;
+			}
 			this.creatChart();
 		});
 	}
@@ -56,61 +133,111 @@ export class AppComponent implements OnInit {
 		chart.height = am4core.percent(100);
 		chart.dataFields.color = "color";
 		chart.padding(0, 0, 0, 0);
+		chart.colors.step = 2;
 		chart.data = [
 		{
-			name: this.nepal?.country,
+			name: "Total Cases",
+			value: this.totalCases,
 			children: [
-				{ name: "Recovered", value: this.nepal?.recovered },
-				{ name: "Deaths", value: this.nepal?.deaths },
-				{ name: "Active", value: this.nepal?.confirmed }
+				{
+				name: this.nepal?.country,
+				value: this.totalNepalCases,
+				children: [
+					{ name: "Recovered", value: this.nepal?.recovered },
+					{ name: "Deaths", value: this.nepal?.deaths },
+					{ name: "Active", value: this.nepal?.confirmed }
+				]
+				}
 			]
 		},
 		{
-			name: this.bangladesh?.country,
+			name: "Total Cases",
+			value: this.totalCases,
 			children: [
-				{ name: "Recovered", value: this.bangladesh?.recovered },
-				{ name: "Deaths", value: this.bangladesh?.deaths },
-				{ name: "Active", value: this.bangladesh?.confirmed }
+				{
+				name: this.bangladesh?.country,
+				value: this.totalBangladeshCases,
+				children: [
+					{ name: "Recovered", value: this.bangladesh?.recovered },
+					{ name: "Deaths", value: this.bangladesh?.deaths },
+					{ name: "Active", value: this.bangladesh?.confirmed }
+				]
+				}
 			]
 		},
 		{
-			name: this.pakistan?.country,
+			name: "Total Cases",
+			value: this.totalCases,
 			children: [
-				{ name: "Recovered", value: this.pakistan?.recovered },
-				{ name: "Deaths", value: this.pakistan?.deaths },
-				{ name: "Active", value: this.pakistan?.confirmed }
+				{
+				name: this.pakistan?.country,
+				value: this.totalPakistanCases,
+				children: [
+					{ name: "Recovered", value: this.pakistan?.recovered },
+					{ name: "Deaths", value: this.pakistan?.deaths },
+					{ name: "Active", value: this.pakistan?.confirmed }
+				]
+				}
 			]
 		},
 		{
-			name: this.india?.country,
+			name: "Total Cases",
+			value: this.totalCases,
 			children: [
-				{ name: "Recovered", value: this.india?.recovered },
-				{ name: "Deaths", value: this.india?.deaths },
-				{ name: "Active", value: this.india?.confirmed }
+				{
+				name: this.india?.country,
+				value: this.totalIndiaCases,
+				children: [
+					{ name: "Recovered", value: this.india?.recovered },
+					{ name: "Deaths", value: this.india?.deaths },
+					{ name: "Active", value: this.india?.confirmed }
+				]
+				}
 			]
 		},
 		{
-			name: this.bhutan?.country,
+			name: "Total Cases",
+			value: this.totalCases,
 			children: [
-				{ name: "Recovered", value: this.bhutan?.recovered },
-				{ name: "Deaths", value: this.bhutan?.deaths },
-				{ name: "Active", value: this.bhutan?.confirmed }
+				{
+				name: this.bhutan?.country,
+				value: this.totalBhutanCases,
+				children: [
+					{ name: "Recovered", value: this.bhutan?.recovered },
+					{ name: "Deaths", value: this.bhutan?.deaths },
+					{ name: "Active", value: this.bhutan?.confirmed }
+				]
+				}
 			]
 		},
 		{
-			name: this.sriLanka?.country,
+			name: "Total Cases",
+			value: this.totalCases,
 			children: [
-				{ name: "Recovered", value: this.sriLanka?.recovered },
-				{ name: "Deaths", value: this.sriLanka?.deaths },
-				{ name: "Active", value: this.sriLanka?.confirmed }
+				{
+				name: this.sriLanka?.country,
+				value: this.totalSriLankaCases,
+				children: [
+					{ name: "Recovered", value: this.sriLanka?.recovered },
+					{ name: "Deaths", value: this.sriLanka?.deaths },
+					{ name: "Active", value: this.sriLanka?.confirmed }
+				]
+				}
 			]
 		},
 		{
-			name: this.maldives?.country,
+			name: "Total Cases",
+			value: this.totalCases,
 			children: [
-				{ name: "Recovered", value: this.maldives?.recovered },
-				{ name: "Deaths", value: this.maldives?.deaths },
-				{ name: "Active", value: this.maldives?.confirmed }
+				{
+				name: this.maldives?.country,
+				value: this.totalMaldivesCases,
+				children: [
+					{ name: "Recovered", value: this.maldives?.recovered },
+					{ name: "Deaths", value: this.maldives?.deaths },
+					{ name: "Active", value: this.maldives?.confirmed }
+				]
+				}
 			]
 		}
 		];
