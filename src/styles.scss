@@ -41,8 +41,8 @@ body {
 
 .header {
     background: #286090;
+    color: #286090;
     padding: 3px 0;
-    color: white;
     position: fixed;
     top: 0px;
     z-index: 999;
@@ -1086,7 +1086,7 @@ body::-webkit-validation-bubble-arrow:increment {
     min-height: initial !important;
     border-top: 1px solid #d9d9d9;
     padding: 15px 0;
-    /* background-color: #f8f8f8; */
+    background-color: #f8f8f8;
 }
 
 footer .copy__rights {
